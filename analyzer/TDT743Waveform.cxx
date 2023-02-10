@@ -84,6 +84,7 @@ void TDT743Waveform::UpdateHistograms(TDataContainer& dataContainer){
     std::vector<RawChannelMeasurement> measurements = dt743->GetMeasurements();
 
     bool changeHistogram = false; 
+    std::cout << "MEASUREMENTS SIZE: " << measurements.size() << std::endl;
     for(int i = 0; i < measurements.size(); i++){
            
       int chan = measurements[i].GetChannel();
@@ -111,8 +112,10 @@ void TDT743Waveform::UpdateHistograms(TDataContainer& dataContainer){
 	GetHistogram(chan)->SetBins(nsamples, 0, nsamples*ns_per_bin);
       }
       
+      std::cout << "MEASUREMENT" << std::endl;
       //std::cout << "Nsamples " <<  measurements[i].GetNSamples() << std::endl;
       for(int ib = 0; ib < nsamples; ib++){
+        std::cout << measurements[i].GetSample(ib) << std::endl;
 	GetHistogram(chan)->SetBinContent(ib+1, measurements[i].GetSample(ib));
       }
 

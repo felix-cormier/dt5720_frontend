@@ -9,7 +9,6 @@ TDT743RawData::TDT743RawData(int bklen, int bktype, const char* name, void *pdat
     TGenericData(bklen, bktype, name, pdata)
 {
 
-  std::cout << "LOADING TDT743 RAW DATA" << std::endl;
   
   fGlobalHeader.push_back(GetData32()[2]);
   fGlobalHeader.push_back(GetData32()[3]);
@@ -22,7 +21,7 @@ TDT743RawData::TDT743RawData(int bklen, int bktype, const char* name, void *pdat
   // Do some sanity checking.  
   // Make sure first word has right identifier
   //I think this can be re-used for DT5720, but I don't get why printout uses [0]
-  if( (GetData32()[2] & 0xf0000000) != 0xa0000000) 
+  if( (GetData32()[0] & 0xf0000000) != 0xa0000000) 
     std::cerr << "First word has wrong identifier; first word = 0x" 
 	      << std::hex << GetData32()[0] << std::dec << std::endl;
   
