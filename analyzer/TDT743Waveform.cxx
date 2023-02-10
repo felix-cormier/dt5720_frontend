@@ -76,7 +76,7 @@ void TDT743Waveform::UpdateHistograms(TDataContainer& dataContainer){
   int eventid = dataContainer.GetMidasData().GetEventId();
   int timestamp = dataContainer.GetMidasData().GetTimeStamp();
   
-  TDT743RawData *dt743 = dataContainer.GetEventData<TDT743RawData>("43FS");
+  TDT743RawData *dt743 = dataContainer.GetEventData<TDT743RawData>("D720");
   TDT743RawData *dt743_mod2 = dataContainer.GetEventData<TDT743RawData>("43F2");
   
   if(dt743){      
@@ -121,6 +121,9 @@ void TDT743Waveform::UpdateHistograms(TDataContainer& dataContainer){
     }
 
   }
+  else {
+	  std::cout << "DID NOT LOAD EVENT" << std::endl;
+       }
 
   if(dt743_mod2){
 

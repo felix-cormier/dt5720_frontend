@@ -8,6 +8,8 @@
 TDT743RawData::TDT743RawData(int bklen, int bktype, const char* name, void *pdata):
     TGenericData(bklen, bktype, name, pdata)
 {
+
+  std::cout << "LOADING TDT743 RAW DATA" << std::endl;
   
   fGlobalHeader.push_back(GetData32()[2]);
   fGlobalHeader.push_back(GetData32()[3]);
@@ -122,12 +124,10 @@ TDT743RawData::TDT743RawData(int bklen, int bktype, const char* name, void *pdat
 	counter++;
       }
 	  
-      RawChannelMeasurement meas = RawChannelMeasurement(ch*2);
+      RawChannelMeasurement meas = RawChannelMeasurement(channel*2);
       meas.AddSamples(Samples);
 
       
-      if(0)std::cout << freq << " " << hit0 << " " << hit1 
-		     << " " << time0 << " " << time1 << std::endl;
       //for(int i = 0; i < Samples0.size(); i++) std::cout << std::hex << Samples0[i] <<std::dec << std::endl; 
     }
   }
